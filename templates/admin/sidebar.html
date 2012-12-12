@@ -1,0 +1,11 @@
+<div id="sidebar">
+    <ul class="sideNav">
+    {% for link in context.sidebar_links %}
+        <li><a href="{{ context.options.admin_url}}/{{ link }}" 
+        {% if link == cur_page %}
+        class="active"
+        {% end %}
+        >{{ context.sidebar_links[link] }}</a></li>
+    {% end %}
+    </ul>
+</div>

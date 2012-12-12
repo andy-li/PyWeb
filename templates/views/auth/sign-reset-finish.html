@@ -1,0 +1,22 @@
+{% extends '../../base-simple.html' %}
+{% block body %}
+<div id="auth">
+    <h2>亲爱的{{ nickname }}：</h2>
+    <p>
+        我们已经发送一封重置密码的Email至你的邮箱{{ email }}
+    </p>
+    <p>
+        <a href="{% raw mail_url %}" target="_blank" class="btn btn-green">现在去我的邮箱收取重置密码的Email吧！</a>
+    </p>
+    <p>
+        注：如果上方的链接点击不开，请进入你的邮箱（{{ email }}）收取我们的验证邮件（有可能会在垃圾信箱内）。
+    </p>
+    <p>
+        如果你的邮箱收不到我们发送的验证邮件，请&gt;<a href="/about/us#contact" class="red">联系我们</a>。
+    </p>
+    <p>
+        {{ verify_url }}
+    </p>
+    <div class="clear"></div>
+</div>
+{% end %}

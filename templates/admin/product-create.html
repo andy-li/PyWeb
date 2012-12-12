@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+{% raw modules.Admin_sidebar('product/create') %}
+
+<h2>
+    <a href="{{ context.options.admin_url }}/product">产品列表</a> &gt;
+    <a href="{{ context.options.admin_url }}/product/create" class="active">{{ context.title }}</a>
+</h2>
+
+<div id="main">
+
+    {% include 'product-form.html' %}
+
+</div>
+
+{% end %}

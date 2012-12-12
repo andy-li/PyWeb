@@ -1,0 +1,51 @@
+{% extends '../../base-simple.html' %}
+{% block body %}
+<div id="auth">
+    <div class="sign">
+        <h1>注册</h1>
+        <form name="SignupForm" action="{{ request.path }}" method="post">
+            <p>
+                <label for="input_auth_email">
+                    <b>Email地址：</b>
+                </label>
+                <input tabindex="1" type="text" id="input_auth_email" name="email" class="input_text"/>
+            </p>
+            <p>
+                <label for="input_auth_nickname">
+                    <b>昵称：</b>
+                </label>
+                <input tabindex="2" type="text" id="input_auth_nickname" name="nickname" class="input_text"/>
+            </p>
+            <p>
+                <label for="input_auth_passwd">
+                    <b>密码：</b>
+                </label>
+                <input tabindex="3" type="password" id="input_auth_passwd" name="auth_passwd" class="input_text"/>
+            </p>
+            <p>
+                <label for="input_auth_repasswd">
+                    <b>重复密码：</b>
+                </label>
+                <input tabindex="4" type="password" id="input_auth_repasswd" name="auth_repasswd" class="input_text"/>
+            </p>
+            <p>
+                <input tabindex="5" type="submit" class="btn btn-red" value="写好了">
+            </p>
+            <p class="gray">
+                已经有账号了？&gt;<a href="/sign-in" id="forgot" class="red">去登录</a>
+            </p>
+            <input type="hidden" name="next" value="{{ url_escape(context.next) }}"/>{% raw xsrf_form_html() %} 
+        </form>
+    </div>
+    <div class="sign_tips">
+        <h2>注册后你可以：</h2>
+        <ul class="tips">
+            <li>
+                分享购物乐趣，成为社区明星。
+            </li>
+        </ul>
+    </div>
+    <div class="clear">
+    </div>
+</div>
+{% end %}

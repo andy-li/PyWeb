@@ -1,0 +1,25 @@
+{% extends '../../base-simple.html' %}
+{% block body %}
+<div id="auth">
+    <h1>重置密码</h1>
+    <form name="SignResetForm" action="{{ request.path }}" method="post">
+        <p>
+            <label for="input_auth_passwd">
+                新密码：
+            </label>
+            <input tabindex="1" type="password" id="input_auth_passwd" name="auth_passwd" class="input_text"/>
+        </p>
+        <p>
+            <label for="input_auth_repasswd">
+                重复密码：
+            </label>
+            <input tabindex="2" type="password" id="input_auth_repasswd" name="auth_repasswd" class="input_text"/>
+        </p>
+        <p>
+            <input tabindex="3" type="submit" class="btn btn-red" value="确认重置">
+        </p><input type="hidden" name="code" value="{{ code }}"/><input type="hidden" name="co" value="{{ co }}"/>{% raw xsrf_form_html() %} 
+    </form>
+    <div class="clear">
+    </div>
+</div>
+{% end %}

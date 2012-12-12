@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+{% raw modules.Admin_sidebar('product/create') %}
+
+<h2>
+    <a href="{{ context.options.admin_url }}/product">产品列表</a> &gt;
+    <a href="{{ context.options.admin_url }}/product/search" class="active">产品搜索</a>
+</h2>
+
+<div id="main">
+            <fieldset>
+            <p><label for="product_name">产品名称:</label>
+            <input type="text" class="validate[required] text-longlong" maxlength="100" name="name" id="product_name" value=""/>
+            </p>
+            <p><label>货号:</label>            
+            <input type="text" class="validate[required] text-medium" maxlength="20" name="code" id="product_code"/>            
+            </p>            
+             <p><label>价格区间：<input type="checkbox" value="1"  name="search_saleprice"/>只搜售价</label>
+            <input type="text" class="text-small" maxlenght="8" name="min_p" id="min_price" value=""/>
+            <input type="text" class="text-small" maxlenght="8" name="max_p" id="max_price" value=""/>
+            </p>          
+            <p><label>关键词：</label>
+            <input type="text" class="text-long" maxlength="128" name="keywords" id="product_keywords" value=""/>
+            </p>  
+            </fieldset>    
+        
+    <div id="formbox_right">    
+        <input type="button" id="productSearchSubmit" class="btn btn-green" value="搜 索"/>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $('#productSearchSubmit').click(function(){
+        var url = '{{ context.options.admin_url }}/product';
+        
+        var search = new Array();
+        
+        var name = $("#product_name").val(),
+            code = $("#product_code").val(), 
+            kw = $("#product_keywords").val(), 
+            min_p = $("#min_price").val(), 
+            max_p = $("#max_price").val();
+                        
+        if(name) {
+            search['name'] = name;
+        }
+                
+        
+        //location.href = url;
+        return true;
+    });
+    
+});
+</script>
+
+{% end %}

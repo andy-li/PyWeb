@@ -1,0 +1,12 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>控制面板</title>
+<link rel="Shortcut Icon" href="{{ static_url('favicon.ico') }}" type="image/x-icon"/>
+</head>
+<frameset id="basePage" rows="50,*" cols="*" border="0">
+    <frame name="header" src="{{ context.options.admin_url }}/head" target="main" noResize scrolling="no">
+    <frame name="main" src="{{ context.options.admin_url }}/home" framespacing="0" scrolling="no" noResize>
+</frameset>
+</html>

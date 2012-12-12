@@ -1,0 +1,83 @@
+   <form name="productForm" id="productForm" action="{{ request.path }}" method="post">
+    <input type="hidden" name="_id" value="{{ product.get('_id', '') }}"/>
+    <ul class="tab" boxid="tabox1">
+        <li><a class="active">1、常规属性</a></li>
+        <li><a>2、产品描述</a></li>
+        <li><a>3、上架排期</a></li>
+    </ul>
+    <ul class="tabox" id="tabox1">
+        <li>
+            <fieldset>
+            <p><label for="product_name">产品名称:</label>
+            <input type="text" class="validate[required] text-longlong" maxlength="100" name="name" id="product_name" value="{{ product.get('name', '') }}"/>
+            </p>
+            <p><label>货号:</label>
+            {% if not product %}
+            <input type="text" class="validate[required] text-medium" maxlength="20" name="code" id="product_code"/>
+            {% else %}
+                <input type="hidden" name="code" id="product_code" value="{{ product['code'] }}"/>
+                {{ product['code'] }} <font class="gray">（产品货号不能修改）</font>
+            {% end %}
+            </p>
+            <p><label>价格：<font class="gray">(原价－市价)</font></label>
+            <input type="text" class="validate[required,custom[number]] text-small" maxlenght="8" name="saleprice" id="product_saleprice" value="{{ product.get('price', {}).get('sp', 0.00) }}"/>
+            <input type="text" class="validate[required,custom[number]] text-small" maxlenght="8" name="marketprice" id="product_marketprice" value="{{ product.get('price', {}).get('mp', 0.00) }}"/>
+            </p>      
+            <p><label>网址：<font class="gray">(以http://开头)</font></label>
+            <input type="text" class="validate[required,custom[url]] text-longlong" maxlength="200" name="url" id="product_url" value="{{ product.get('url', 'http://') }}"/>                
+            </p>
+            <p><label>推荐语：</label>
+            <input type="text" class="text-longlong" maxlength="100" name="tips" id="product_tips" value="{{ product.get('context', {}).get('tips', '') }}"/>
+            </p>        
+            </fieldset>
+        </li>
+        <li>
+            <fieldset>
+            <p><label>关键词：<font class="gray">(以逗号“,”或顿号“、”分隔)</font></label>
+            <input type="text" class="validate[required] text-longlong" maxlength="128" name="keywords" id="product_keywords" value="{{ product.get('keywords', '') }}"/>
+            </p>
+            <p><label>简介:</label>
+            <textarea name="description">{{ product.get('context', {}).get('description', '') }}</textarea>
+            </p>
+            <p><label>封面图片：</label>
+            <input type="file" class="text-longlong" name="titlepage"/>
+            </p>
+            </fieldset>
+        </li>
+        <li>
+            <fieldset>
+            <p><label>起始日期：<font class="gray">(格式 0000-00-01)</font></label>
+            <input type="text" class="validate[custom[date]] text-medium" name="begindate" id="sale_begindate" value="{{ product.get('status', {}).get('begindate', '') }}"/>
+            </p>
+            <p><label>结束日期：<font class="gray">(格式 0000-00-01)</font></label>
+            <input type="text" class="validate[custom[date]] text-medium" name="expdate" id="sale_expdate" value="{{ product.get('status', {}).get('expdate', '') }}"/>
+            </p>
+            </fieldset>        
+        </li>
+    </ul>
+    <div id="formbox_right">
+    
+    <input type="submit" id="productFormSubmit" class="btn btn-red" value="写好了，保存"/>
+    
+    <br/><br/>
+    {% if not product %}        
+        <input type="checkbox" value="1"  name="keep_create"/>继续添加产品
+    {% else %}
+        <font class="gray">注意：更新后产品需重新上架</font>
+    {% end %}
+    
+    </div>             
+    {% raw xsrf_form_html() %}     
+    </form>
+
+<script type="text/javascript" src="{{ static_url('admin/js/jquery.validationEngine-zh_cn.js') }}"></script>
+<script type="text/javascript" src="{{ static_url('admin/js/jquery.validationEngine.js') }}"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    $(".tab").tab();
+    $("#productForm").validationEngine();
+    $(".tab").find("li a").click(function(){
+        $("#productForm").validationEngine('hide');
+    }); 
+});    
+</script>    

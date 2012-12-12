@@ -1,0 +1,29 @@
+#nav {
+	_position:absolute;
+	_bottom:auto;
+	_top:expression(eval(document.documentElement.scrollTop + 72));
+}
+
+
+#auth .sign_tips p {
+	margin-bottom: 10px;
+}
+
+* html #dialog_overlay {
+    position:absolute;
+    height:expression(document.body.scrollHeight > document.body.offsetHeight ? document.body.scrollHeight : document.body.offsetHeight + 'px');
+}
+
+* html #dialog {
+    position: absolute;
+    margin-top: expression(0 - parseInt(this.offsetHeight / 2) + (TBWindowMargin = document.documentElement && document.documentElement.scrollTop || document.body.scrollTop) + 'px');
+}
+
+* html #dialog_loading {
+    position: absolute;
+    margin-top: expression(0 - parseInt(this.offsetHeight / 2) + (TBWindowMargin = document.documentElement && document.documentElement.scrollTop || document.body.scrollTop) + 'px');
+}
+
+#dialog_wrap {
+	padding:14px;
+}

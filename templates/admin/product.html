@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+{% raw modules.Admin_sidebar('product') %}
+
+<h2>
+    <a href="{{ context.options.admin_url }}/product" class="active">{{ context.title }}</a>
+    <font class="gray">({{ num }})</font>
+</h2>
+
+<div id="main">
+<div id="message"></div>
+
+<table cellpadding="0" cellspacing="0">
+<tbody>
+    <tr class="operate">
+        <td colspan="10">
+            <a href="#" class="a-btn a-on">上架中</a>
+            <a href="#" class="a-btn">已下架</a>        
+        </td>
+    </tr>
+    <tr class="odd">
+        <td width="20"><input type="checkbox" id="choseAll"/></td>
+        <td width="80">编号</td>
+        <td>产品名称</td>
+        <td width="60">售价</td>
+        <td width="100" class="action">操作</td>
+    </tr>
+    {% if num > 0 %}
+        {% for item in data %}                                        
+        <tr>
+            <td class="id"><input type="checkbox" value="{{ item['code'] }}" class="pcode"/></td>
+            <td>{{ item['code'] }}</td>
+            <td>{{ item['name'] }}</td>
+            <td>¥{{ item['price']['sp'] }}</td>
+            <td class="action">
+                <a href="{{ context.options.admin_url }}/product/edit/{{ item['code'] }}" class="edit">编辑</a>
+                <a href="{{ context.options.admin_url }}/product/remove?code={{ item['code'] }}" class="delete">删除</a>
+            </td>
+        </tr>              
+        {% end %}
+        
+        <tr class="pagebar">
+            <td colspan="10" align="right">
+            <ul class="pager">
+            {% raw modules.Admin_pager(num, page, context.options.admin_url + '/product', pagesize, args) %}
+            </ul>
+            </td>
+        </tr>
+    {% else %}
+        <tr><td colspan="10">未找到相关纪录。</td></tr>
+    {% end %}          
+</tbody>
+</table>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $(".delete").doRemove();   
+    $("#choseAll").choseAll(); 
+});
+</script>
+
+{% end %}

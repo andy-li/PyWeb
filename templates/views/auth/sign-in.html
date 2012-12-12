@@ -1,0 +1,60 @@
+{% extends '../../base-simple.html' %}
+{% block body %}
+<div id="auth">
+    <div class="sign">
+        <h1>登录</h1>
+        <form name="SignInForm" action="{{ request.path }}" method="post">
+            <p>
+                <label for="input_auth_email">
+                    <b>Email：</b>
+                </label>
+                <input tabindex="1" type="text" id="input_auth_email" name="email" class="input_text"/>
+            </p>
+            <p>
+                <label for="input_auth_passwd">
+                    <b>密码：</b>
+                </label>
+                <input tabindex="2" type="password" id="input_auth_passwd" name="auth_passwd" class="input_text"/>
+            </p>
+            <p>
+                <label for="input_autologin">
+                    <input tabindex="3" type="checkbox" name="auto_login" id="input_autologin" class="input_check" value="on">下次自动登录
+                </label>
+            </p>
+            <p>
+                <input tabindex="4" type="submit" class="btn btn-red" value="登 录">
+            </p>
+            <p class="gray">
+                忘记密码了？&gt;<a href="/reset" id="forgot" class="red">找回密码</a>
+            </p>
+            <input type="hidden" name="next" value="{{ url_escape(context.next) }}"/>{% raw xsrf_form_html() %} 
+        </form>
+    </div>
+    <div class="sign_tips">
+        <h2>还没有账号？<a href="/sign-up" class="btn btn-green">立即去注册</a>
+            <font class="gray">
+                (仅需30秒)
+            </font>
+        </h2>
+            <p style="margin-top:30px;">
+                你也可以用站外账号登录:
+            </p>
+        <ul>
+            <li>
+                <a href="#"><img src="{{ static_url('ui/img/connect/sina.png') }}" alt="新浪微博"/></a>
+            </li>
+            <li>
+                <a href="#"><img src="{{ static_url('ui/img/connect/taobao.gif') }}" alt="淘宝"/></a>
+            </li>
+            <li>
+                <a href="#"><img src="{{ static_url('ui/img/connect/qq.png') }}" alt="QQ账号"/></a>
+            </li>
+            <li>
+                <a href="#"><img src="{{ static_url('ui/img/connect/renren.png') }}" alt="人人网"/></a>
+            </li>
+        </ul>
+    </div>
+    <div class="clear">
+    </div>
+</div>
+{% end %}

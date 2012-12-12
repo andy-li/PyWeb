@@ -1,0 +1,14 @@
+{% extends '../../base-simple.html' %}
+{% block body %}
+<div id="auth">
+    <h2>邮箱验证成功！</h2>
+    <p>
+        恭喜你，你的Email（<strong>{{ email }}</strong>）已经验证成功！
+    </p>
+    <p>
+        <a href="sign-in" class="btn btn-green">立即去登录</a>
+    </p>
+    <div class="clear">
+    </div>
+</div>
+{% end %}

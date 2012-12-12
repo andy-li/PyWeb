@@ -1,0 +1,28 @@
+{% extends '../../base-simple.html' %}
+{% block body %}
+<div id="auth">
+    <div class="sign">
+        <h1>重置密码</h1>
+        <form name="SignResetForm" action="{{ request.path }}" method="post">
+            <p>
+                <label for="input_auth_email">
+                    <b>Email：</b>
+                </label>
+                <input tabindex="1" type="text" id="input_auth_email" name="email" class="input_text"/>
+            </p>
+            <p>
+                <input tabindex="2" type="submit" class="btn btn-red" value="发送重置密码邮件">
+            </p>
+            <p>
+                我记起密码了，&gt;<a href="/sign-in" id="forgot" class="red">立即登录</a>
+            </p>
+            {% raw xsrf_form_html() %} 
+        </form>
+    </div>
+    <div class="sign_tips">
+        <h2>用30秒 <a href="/sign-up" class="btn btn-green a-btn">重新注册个账户</a></h2>
+    </div>
+    <div class="clear">
+    </div>
+</div>
+{% end %}

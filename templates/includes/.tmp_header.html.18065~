@@ -1,0 +1,12 @@
+<div id="top">
+    <a class="top_logo" href="/"><h1>LOGO</h1></a>
+    {% if current_user %}
+        <a href="/people/sputnik">{{ current_user['nickname'] }}</a>
+		<a href="/people/love">心愿单</a>
+		<a href="/people/settings">帐号</a>
+        <a href="/sign-out">登出</a>
+    {% else %}
+        <a href="/sign-in">登录</a>        
+        <a href="/sign-up" title="只需Email就可以注册哦">快速注册</a>(30秒)  
+    {% end %}
+</div>
